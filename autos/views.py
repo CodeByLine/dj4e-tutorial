@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View, generic
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -56,10 +56,11 @@ class MakeDelete(LoginRequiredMixin, DeleteView):
 # Build a form object dynamically based on the fields
 # value in the constructor attributes
 
-def Autos(request):
-    pass
-
-# class Autos(LoginRequiredMixin, View):
+class Autos(TemplateView):
+    model = Auto
+    fields = '__all__'
+    success_url = reverse_lazy('autos')
+# class Autos(LoginRequiredMixin, ListView):
 #     def get(self, request):
 #         mc = Make.objects.all().count()
 #         al = Auto.objects.all()
@@ -70,21 +71,21 @@ def Autos(request):
 class AutoList(LoginRequiredMixin, ListView):
     pass
 
-class AutosCreate(LoginRequiredMixin, CreateView):
+class AutoCreate(LoginRequiredMixin, CreateView):
     pass
     # model = Auto
     # fields = '__all__'
     # success_url = reverse_lazy('autos:all')
 
 
-class AutosUpdate(LoginRequiredMixin, UpdateView):
+class AutoUpdate(LoginRequiredMixin, UpdateView):
     pass
     # model = Auto
     # fields = '__all__'
     # success_url = reverse_lazy('autos:all')
 
 
-class AutosDelete(LoginRequiredMixin, DeleteView):
+class AutoDelete(LoginRequiredMixin, DeleteView):
     pass
     # model = Auto
     # fields = '__all__'
