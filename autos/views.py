@@ -1,11 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views import View
+from django.views import View, generic
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from autos.models import Auto, Make
-from autos.forms import MakeForm
+# from autos.forms import MakeForm
 
 # Create your views here.
 
@@ -54,22 +55,40 @@ class MakeDelete(LoginRequiredMixin, DeleteView):
 # These views do not need a form because CreateView, etc.
 # Build a form object dynamically based on the fields
 # value in the constructor attributes
-class AutoCreate(LoginRequiredMixin, CreateView):
-    model = Auto
-    fields = '__all__'
-    success_url = reverse_lazy('autos:all')
+
+def Autos(request):
+    pass
+
+# class Autos(LoginRequiredMixin, View):
+#     def get(self, request):
+#         mc = Make.objects.all().count()
+#         al = Auto.objects.all()
+
+#         ctx = {'make_count': mc, 'auto_list': al}
+#         return render(request, 'autos/auto_list.html', ctx)
+
+class AutoList(LoginRequiredMixin, ListView):
+    pass
+
+class AutosCreate(LoginRequiredMixin, CreateView):
+    pass
+    # model = Auto
+    # fields = '__all__'
+    # success_url = reverse_lazy('autos:all')
 
 
-class AutoUpdate(LoginRequiredMixin, UpdateView):
-    model = Auto
-    fields = '__all__'
-    success_url = reverse_lazy('autos:all')
+class AutosUpdate(LoginRequiredMixin, UpdateView):
+    pass
+    # model = Auto
+    # fields = '__all__'
+    # success_url = reverse_lazy('autos:all')
 
 
-class AutoDelete(LoginRequiredMixin, DeleteView):
-    model = Auto
-    fields = '__all__'
-    success_url = reverse_lazy('autos:all')
+class AutosDelete(LoginRequiredMixin, DeleteView):
+    pass
+    # model = Auto
+    # fields = '__all__'
+    # success_url = reverse_lazy('autos:all')
 
 # We use reverse_lazy rather than reverse in the class attributes
 # because views.py is loaded by urls.py and in urls.py as_view() causes
