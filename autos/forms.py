@@ -1,4 +1,10 @@
-import datetime
 
-from django import forms
-from django.core.exceptions import ValidationError
+from django.forms import ModelForm
+from autos.models import Make
+
+
+# Create the form class.
+class MakeForm(ModelForm):
+    class Meta:
+        model = Make
+        fields = '__all__'
