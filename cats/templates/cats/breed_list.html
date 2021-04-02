@@ -2,6 +2,31 @@
 
 {% block content %}
 
-  <h1>Breed List2--works</h1>
-  
+<h1>Breed List -- this works</h1>
+  {% if breed_list %}
+  <ul>
+    {% for breed in breed_list %}
+      <li>
+          ({{ breed.name }})
+          (<a href="{% url 'cats:breed_update' breed.id %}">Update</a> |
+          <a href="{% url 'cats:breed_delete' breed.id %}">Delete</a>) <br/>
+    
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no breeds in the library.</p>
+  {% endif %}
+  <p>
+    {% if breed_count > 0 %}
+      <a href="{% url 'cats:breed_create' %}">Add a breed</a>
+    {% else %}
+      Please add a breed before you add a cat.
+    {% endif %}
+  </p>
+  <p>
+  <a href="{% url 'cats:breed_list' %}">View breeds</a> ({{ breed_count }}) | <a href="{% url 'cats:cat_list' %}">View cats</a>  | 
+    <a href="{% url 'cats:cat_create' %}">Add a cat</a>
+  </p>
 {% endblock %}
+  
