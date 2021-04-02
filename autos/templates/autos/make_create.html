@@ -1,7 +1,14 @@
 {% extends "base_bootstrap.html" %}
-
+<h1>Make create</h1>
 {% block content %}
 
-<h1>Make create</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+    <input type="submit" onclick="window.location='{% url 'autos:all' %}' ; return false;" value="Cancel">
+  </form>
 
 {% endblock %}
