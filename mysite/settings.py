@@ -32,6 +32,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_extensions',
+    'crispy_forms',
+    'cats.apps.CatsConfig',
     'autos.apps.AutosConfig',
     'hello.apps.HelloConfig',
     'home.apps.HomeConfig',
