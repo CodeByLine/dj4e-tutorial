@@ -28,8 +28,8 @@
 
 </head>
 <body>
-<div class="container">
-{% block navbar %}  {% include 'base_menu.html' %}  {% endblock %}
+{% block navbar %} {% include 'partials/_navbar.html' %} {% endblock %}
+<div class="container m-5">
 {% block welcome %} {% endblock %}
 {% block messages %}
     {% if messages %}
@@ -40,8 +40,10 @@
     {% endfor %}
     {% endif %}
 {% endblock %}
+
 {% block content %}
 {% endblock %}
+
 </div>
 {% block footer %} {% endblock %}
 </body>
