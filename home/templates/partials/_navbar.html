@@ -11,10 +11,13 @@
           <li class="nav-item {% if 'autos:all' == request.path %} active {% endif %}">
             <a class="nav-link" aria-current="page" href="{% url 'autos:all' %}">Autos CRUD</a>
           </li>
-          <li class="nav-item">
+
+        {%  url 'cats:cat_list' as xyz %}
+          <li {% if request.get_full_path == xyz %}class=" active nav-item"{% endif %}>
             <a class="nav-link" aria-current="page" href="{% url 'cats:cat_list' %}">Cats CRUD</a>
           </li>
 
+          {%  url url 'polls:index' as xyz %}
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'polls:index' %}">Polls</a>
           </li>

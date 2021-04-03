@@ -2,8 +2,14 @@
 
 {% block content %}
 <h1>Add a Breed</h1>
+{% load crispy_forms_tags %}
   <form action="" method="post">
     {% csrf_token %}
+    <h2>Crispy Form</h2>
+    {{ form | crispy }}
+
+    <br>
+    <h2>Form.as_table</h2>
     <table>
     {{ form.as_table }}
     </table>
