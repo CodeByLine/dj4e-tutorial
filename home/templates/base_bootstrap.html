@@ -25,8 +25,9 @@
 
 </head>
 <body>
+
+{% block navbar %} {% include 'partials/_navbar.html' %} {% endblock %}
 <div class="container m-5">
-{% block navbar %} {% endblock %}
 {% block welcome %} {% endblock %}
 {% block messages %}
     {% if messages %}
