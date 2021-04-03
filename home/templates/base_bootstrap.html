@@ -41,7 +41,7 @@
 </head>
 <body>
 <div class="container">
-{% block navbar %} {% endblock %}
+{% block navbar %}  {% include 'base_menu.html' %}  {% endblock %}
 {% block welcome %} {% endblock %}
 {% block messages %}
     {% if messages %}
