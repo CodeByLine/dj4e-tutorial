@@ -9,24 +9,24 @@
         {{ ad.title }}<br>
         {{ ad.price }}
         {{ ad.text }}
-        (<a href="{% url 'ads/ad:ad_update' ad.id %}">Update</a> |
-        <a href="{% url 'ads/ad:ad_delete' ad.id %}">Delete</a>) <br/>
+        (<a href="{% url 'ads:ad_update' ad.id %}">Update</a> |
+        <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>) <br/>
   
     </li>
   {% endfor %}
 </ul>
 {% else %}
-  <p>There are no breeds in the library.</p>
+  <p>There are no ads in the library.</p>
 {% endif %}
 <p>
-  {% if breed_count > 0 %}
-    <a href="{% url 'cats:breed_create' %}">Add a breed</a>
+  {% if ad_count > 0 %}
+    <a href="{% url 'ads:ad_create' %}">Add a breed</a>
   {% else %}
-    Please add a breed before you add a cat.
+    Add an ad to see it here.
   {% endif %}
 </p>
 <p>
-<a href="{% url 'cats:breed_list' %}">View breeds</a> ({{ breed_count }}) | <a href="{% url 'cats:cat_list' %}">View cats</a>  | 
-  <a href="{% url 'cats:cat_create' %}">Add a cat</a>
+<a href="{% url 'ads:all' %}">View ads</a> ({{ ad_count }}) | <a href="{% url 'ads:all' %}">View ads</a>  | 
+  <a href="{% url 'ads:ad_create' %}">Add an ad</a>
 </p>
 {% endblock %}
