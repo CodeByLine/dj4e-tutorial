@@ -1,12 +1,7 @@
 {% extends "base_bootstrap.html" %}
-
 {% block content %}
-
-<ul style="list-style:none;">
-   
-    <h2><li class="my-4"><a href="/autos"  style="text-decoration: none;">Autos CRUD</a></li></h2>
-    <h2><li class="my-4"><a href="/cats"  style="text-decoration: none;">Cats CRUD</a></li> </h2>
-    <h2><li class="my-4"><a href="/polls"  style="text-decoration: none;">A Polls Application</a></li></h2>
-    <h2><li class="my-4"><a href="/hello"  style="text-decoration: none;">Test the session</a></li></h2>
-</ul>
-{% endblock %}
+    <h1>Welcome to {{ settings.APP_NAME }}</h1>
+    <p>
+    Hello world.
+    </p>
+{% endblock content %}
