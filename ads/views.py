@@ -12,7 +12,7 @@ from .models import Ad
 
 class AdListView(OwnerListView):
     model = Ad
-    fields = ['title', 'price', 'text']
+    # fields = ['title', 'price', 'text']
     # success_url = reverse_lazy('ads:ad_list')
 
 class AdCreateView(OwnerCreateView):

@@ -2,5 +2,31 @@
 
 {% block content %}
 <h1>Ads</h1>
-
+{% if ad_list %}
+<ul>
+  {% for ad in ad_list %}
+    <li>
+        {{ ad.title }}<br>
+        {{ ad.price }}
+        {{ ad.text }}
+        (<a href="{% url 'ads/ad:ad_update' ad.id %}">Update</a> |
+        <a href="{% url 'ads/ad:ad_delete' ad.id %}">Delete</a>) <br/>
+  
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no breeds in the library.</p>
+{% endif %}
+<p>
+  {% if breed_count > 0 %}
+    <a href="{% url 'cats:breed_create' %}">Add a breed</a>
+  {% else %}
+    Please add a breed before you add a cat.
+  {% endif %}
+</p>
+<p>
+<a href="{% url 'cats:breed_list' %}">View breeds</a> ({{ breed_count }}) | <a href="{% url 'cats:cat_list' %}">View cats</a>  | 
+  <a href="{% url 'cats:cat_create' %}">Add a cat</a>
+</p>
 {% endblock %}
