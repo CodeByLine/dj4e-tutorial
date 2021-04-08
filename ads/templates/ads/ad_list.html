@@ -24,12 +24,12 @@
 {% endif %}
 <p>
   {% if ad_count > 0 %}
-    <a href="{% url 'ads:ad_create' %}">Add a breed</a>
+    <a href="{% url 'ads:ad_create' %}">Create Ad</a>
   {% else %}
     Add an ad to see it here.
   {% endif %}
 </p>
 <p>
-<a href="{% url 'ads:all' %}">View ads</a> | <a href="{% url 'ads:ad_create' %}">Add an ad</a>
+<a href="{% url 'ads:all' %}">View ads</a> | <a href="{% url 'ads:ad_create' %}">Create Ad</a>
 </p>
 {% endblock %}
