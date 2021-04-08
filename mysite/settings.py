@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'cats.apps.CatsConfig',
     'hello.apps.HelloConfig',
     'polls.apps.PollsConfig',
+    'django.contrib.humanize',
 
     # Extensions - installed with pip3 / requirements.txt
     'django_extensions', 
