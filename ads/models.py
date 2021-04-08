@@ -17,7 +17,7 @@ class Ad(models.Model) :
     picture = models.BinaryField(null=True, editable=True)
     content_type = models.CharField(max_length=256, null=True, help_text='The MIMEType of the file')
 
-    class Comment(models.Model) :
+class Comment(models.Model) :
     text = models.TextField(
         validators=[MinLengthValidator(3, "Comment must be greater than 3 characters")]
     )
