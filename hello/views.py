@@ -15,7 +15,8 @@ def cookie(request):
         resp.set_cookie('zap', int(oldval)+1) # No expired date = until browser close
     else :
         resp.set_cookie('zap', 42) # No expired date = until browser close
-    resp.set_cookie('sakaicar', 42, max_age=1000) # seconds until expire
+    # resp.set_cookie('sakaicar', 42, max_age=1000) # seconds until expire
+    resp.set_cookie('dj4e_cookie', 'd0dcf063', max_age=1000)
     return resp
 
 # https://www.youtube.com/watch?v=Ye8mB6VsUHw
