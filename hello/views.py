@@ -29,6 +29,8 @@ def hello(request) :
     resp = HttpResponse('view count='+str(num_visits))
     return resp
 
+    resp.set_cookie('dj4e_cookie', 'd0dcf063', max_age=1000)
+    request.session['dj4e_cookie'] = 'd0dcf063'
 
 def sessfun(request) :
     resp.set_cookie('dj4e_cookie', 'd0dcf063', max_age=1000)
