@@ -7,5 +7,5 @@ app_name = 'hello'
 # Note use of plural for list view and singular for detail view
 urlpatterns = [
  
-    path('hello', TemplateView.as_view(template_name='home/hello.html')),
+    path('', TemplateView.as_view(template_name='hello/hello.html')),
     ]
