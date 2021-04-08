@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from ads.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 from django.urls import reverse_lazy
 
-from .models import Ad
+from .models import Ad, Comment
 # from .forms import AdForm
 
 
