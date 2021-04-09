@@ -1,5 +1,7 @@
 {% extends 'base_bootstrap.html' %}
 {% load app_tags %} <!-- see home/templatetags/app_tags.py and dj4e-samples/settings.py -->
+{% load humanize %} 
+
 {% block navbar %}
 <!-- https://www.w3schools.com/bootstrap/bootstrap_navbar.asp -->
 <nav class="navbar navbar-default navbar-inverse">
@@ -28,6 +30,7 @@
       {% url 'polls:index' as abc2 %}
       <li {% if request.get_full_path == abc2 %}class="active"{% endif %}>
           <a href="{% url 'polls:index' %}"> Polls </a></li>
+
 
       <li class="dropdown">
       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Drop Down
