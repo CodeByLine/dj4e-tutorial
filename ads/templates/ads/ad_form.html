@@ -6,7 +6,7 @@
 <h1>Ad Form</h1>
 {% load crispy_forms_tags %}
 <p>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <table>
       {{ form|crispy }}
