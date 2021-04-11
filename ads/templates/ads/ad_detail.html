@@ -20,8 +20,7 @@
 </p>
 
 {% for comment in comments %}
-<p> {{ comment.text }}
-({{ comment.updated_at|naturaltime }})
+<p> {{ comment }} ({{ comment.text }}) | Updated at ({{ comment.updated_at|naturaltime }})
 {% if user == comment.owner %}
 <a href="{% url 'ads:ad_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
 {% endif %}
@@ -49,4 +48,8 @@
 {% endif %}
 </p>
 {% endfor %}
+
+
+
+
 {% endblock %}
