@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'autos.apps.AutosConfig',
     'cats.apps.CatsConfig',
     'hello.apps.HelloConfig',
+    'pics.apps.PicsConfig',
     'polls.apps.PollsConfig',
+
 
     # Extensions - installed with pip3 / requirements.txt
     'django_extensions', 

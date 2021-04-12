@@ -31,6 +31,7 @@ urlpatterns = [
     path('cats/', include('cats.urls')),
     path('polls/', include('polls.urls')),
     path('hello/', include('hello.urls')),
+    path('pics/', include('pics.urls')),
 ]
 
 # Serve the static HTML
