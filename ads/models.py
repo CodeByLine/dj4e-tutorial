@@ -15,4 +15,5 @@ class Ad(models.Model) :
 
     # Shows up in the admin list
     def __str__(self):
-        return self.title
+        return self.title 
+        
