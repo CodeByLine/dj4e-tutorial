@@ -22,8 +22,13 @@ def cookie(request):
 # https://www.youtube.com/watch?v=Ye8mB6VsUHw
 
 # def sessfun(request) :
+<<<<<<< HEAD
+def hello(request) :
+
+=======
 def myview(request) :
  
+>>>>>>> ads2
     num_visits = request.session.get('num_visits', 0) + 1
     request.session['num_visits'] = num_visits
     if num_visits > 4 : del(request.session['num_visits'])
@@ -31,6 +36,9 @@ def myview(request) :
     resp.set_cookie('dj4e_cookie', 'd0dcf063', max_age=1000)
     request.session['dj4e_cookie'] = 'd0dcf063'
     return resp
+
+    resp.set_cookie('dj4e_cookie', 'd0dcf063', max_age=1000)
+    request.session['dj4e_cookie'] = 'd0dcf063'
 
 def sessfun(request) :
     resp.set_cookie('dj4e_cookie', 'd0dcf063', max_age=1000)

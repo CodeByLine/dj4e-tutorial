@@ -1,9 +1,40 @@
-{% extends "base_menu.html" %}
 
+{% extends "base_bootstrap.html" %}
 {% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
 {% block content %}
-
-<h1>ad detail</h1>
-
-{{ ad }}
+<h1>
+{% if ad.owner == user %}
+<span style="float: right;">
+<a href="{% url 'ads:ad_update' ad.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'ads:ad_delete' ad.id %}"><i class="fa fa-trash"></i></a>
+</span>
+{% endif %}
+{{ ad.title }}
+</h1>
+<p>
+{{ ad.text }}
+</p>
+<p>
+({{ ad.updated_at|naturaltime }})
+</p>
+{% if user.is_authenticated %}
+<br clear="all"/>
+<p>
+{% load crispy_ads_tags %}
+<form method="post" action="{% url 'ads:ad_comment_create' ad.id %}">
+    {% csrf_token %}
+    {{ ad_form|crispy }}
+<input type="submit" value="Submit">
+<input type="submit" value="All Ads" onclick="window.location.href='{% url 'ads:all' %}';return false;">
+</form>
+</p>
+{% endif %}
+{% for ad in ad_list %}
+<p> {{ ad.text }} 
+({{ comment.updated_at|naturaltime }})
+{% if user == comment.owner %}
+<a href="{% url 'ads:ad_comment_delete' ad.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</p>
+{% endfor %}
 {% endblock %}
