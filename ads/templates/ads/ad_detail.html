@@ -20,10 +20,10 @@
 {% if user.is_authenticated %}
 <br clear="all"/>
 <p>
-{% load crispy_ads_tags %}
+
 <form method="post" action="{% url 'ads:ad_comment_create' ad.id %}">
     {% csrf_token %}
-    {{ ad_form|crispy }}
+    {{ ad_form }}
 <input type="submit" value="Submit">
 <input type="submit" value="All Ads" onclick="window.location.href='{% url 'ads:all' %}';return false;">
 </form>
