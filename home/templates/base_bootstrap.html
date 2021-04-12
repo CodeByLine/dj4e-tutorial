@@ -23,7 +23,7 @@
 </head>
 <body>
 {% block navbar %} {% include 'partials/_navbar.html' %} {% endblock %}
-<div class="container m-5">
+<div class="container m-5 px-5">
 {% block welcome %}  {% endblock %}
 {% block messages %}
     {% if messages %}
@@ -39,6 +39,9 @@
 {% endblock %}
 
 </div>
-{% block footer %} { % include 'partials/_navbar.html' % } {% endblock %}
+{% block footer %} 
+<div class="container text-center"><a href="https://www.coursera.org/specializations/django">Powered by DJ4E </a> 
+</div>
+{% endblock %}
 </body>
 </html>
