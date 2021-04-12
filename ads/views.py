@@ -74,7 +74,6 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return redirect(reverse('ads:ad_detail', args=[pk]))
    
 
-
 class CommentDeleteView(OwnerDeleteView):
     model = Comment 
     success_url = reverse_lazy('ads:all')
