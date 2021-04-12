@@ -64,7 +64,7 @@ class AdDeleteView(OwnerDeleteView):
 #     model = Comment
 #     post_comments = Comment.objects.all(filter_by )
 
-class CommentCreateView(LoginRequiredMixin, View):
+class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment 
     success_url = reverse_lazy('ads:all')
     def post(self, request, pk) :
