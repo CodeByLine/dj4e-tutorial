@@ -1,10 +1,21 @@
-{% extends "base_menu.html" %}
+{% extends "base_bootstrap.html" %}
 
 {% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
 {% block content %}
 
 <h1>Ad Create</h1>
-
 {% load crispy_forms_tags %}
+<p>
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+      {{ form|crispy }}
+      </table>
+      <input type="submit" value="Submit">
+      <input type="submit"
+      onclick="window.location='{% url 'ads:all' %}' ; return false;"
+      value="Cancel">
+    </form>
+  </p>
 
 {% endblock %}

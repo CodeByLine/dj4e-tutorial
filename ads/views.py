@@ -6,7 +6,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from ads.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 from django.urls import reverse_lazy
 from .models import Ad, Comment
+from pics.models import Pic
 # from .forms import AdForm
+from .forms import AdCreateForm
 
 
 class AdListView(OwnerListView):
@@ -14,9 +16,31 @@ class AdListView(OwnerListView):
     # fields = ['title', 'price', 'text']
     # success_url = reverse_lazy('ads:ad_list')
 
-class AdCreateView(OwnerCreateView):
-    model = Ad
-    fields = ['title', 'price', 'text']
+class AdCreateView(LoginRequiredMixin, View):
+    template_name = 'ads/ad_create.html'
+    success_url = reverse_lazy('ads:all')
+
+    def get(self, request, pk=None):
+        form = AdCreateForm()
+        ctx = {'form': form}
+        return render(request, self.template_name, ctx)
+
+    def post(self, request, pk=None):
+        form = AdCreateForm(request.POST, request.FILES or None)
+
+        if not form.is_valid():
+            ctx = {'form': form}
+            return render(request, self.template_name, ctx)
+
+        # Add owner to the model before saving
+        pic = form.save(commit=False)
+        pic.owner = self.request.user
+        pic.save()
+        return redirect(self.success_url)
+
+# class AdCreateView(OwnerCreateView):
+#     model = Ad
+#     fields = ['title', 'price', 'text']
     # success_url = reverse_lazy('ads:ad_list')
 
 class AdDetailView(OwnerDetailView):

@@ -1,11 +1,11 @@
 from django import forms
-from pics.models import Pic
+from ads.models import Ad
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from pics.humanize import naturalsize
 
 
 # Create the form class.
-class CreateForm(forms.ModelForm):
+class AdCreateForm(forms.ModelForm):
     max_upload_limit = 2 * 1024 * 1024
     max_upload_limit_text = naturalsize(max_upload_limit)
 
@@ -17,7 +17,7 @@ class CreateForm(forms.ModelForm):
 
     # Hint: this will need to be changed for use in the ads application :)
     class Meta:
-        model = Pic
+        model = Ad
         fields = ['title', 'text', 'picture']  # Picture is manual
 
     # Validate the size of the picture
@@ -31,7 +31,7 @@ class CreateForm(forms.ModelForm):
             
     # Convert uploaded File object to a picture
     def save(self, commit=True):
-        instance = super(CreateForm, self).save(commit=False)
+        instance = super(AdCreateForm, self).save(commit=False)
 
         # We only need to adjust picture if it is a freshly uploaded file
         f = instance.picture   # Make a copy

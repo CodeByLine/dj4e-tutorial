@@ -1,5 +1,4 @@
-{% extends "base_menu.html" %}
-
+{% extends "base_bootstrap.html" %}
 
 {% block content %}
 <h1>Ads</h1>
@@ -9,6 +8,7 @@
     <li>
         <a href="{% url 'ads:ad_detail' ad.id %}">{{ ad.title }}</a> – ${{ ad.price }}<br>
         {{ ad.text }}
+        {% if ad.picture %} {{ad.picture}} {% endif %}
         {% if ad.owner == user %}
           (<a href="{% url 'ads:ad_update' ad.id %}">Update</a> |
          <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>)
