@@ -41,6 +41,26 @@
 </form>
 </p>
 {% endif %}
+
+
+{% if ad.content_type %}
+<div id="overlay" class="overlay" style="text-align: center;"
+   onclick="document.getElementById('overlay').style.display = 'none';" >
+<img style="width:25%;margin-top: 10px; border:3px solid black;" src="{% url 'ads:ad_picture' ad.id %}">
+</div>
+<p>
+    {{ pic.text }}
+    </p>
+{% endif %}
+<span style="float: right;">
+({{ pic.updated_at|naturaltime }})
+{% if pic.owner == user %}
+<a href="{% url 'ads:ad_update' ad.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'ads:ad_delete' ad.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</span>
+
+
 {% for ad in ad_list %}
 <p> {{ ad.text }} 
 ({{ comment.updated_at|naturaltime }})
@@ -49,8 +69,7 @@
 {% endif %}
 </p>
 {% endfor %}
-
-
-
-
+<p>
+    <a href="{% url 'ads:all' %}">All pics</a>
+    </p>
 {% endblock %}
