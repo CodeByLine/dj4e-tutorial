@@ -1,9 +1,6 @@
 {% extends "base_bootstrap.html" %}
-<<<<<<< HEAD
-=======
 
 { % extends "base_menu.html" % }
->>>>>>> ads4
 
 {% block content %}
 <h1>Ads</h1>
@@ -11,11 +8,7 @@
 <ul>
   {% for ad in ad_list %}
     <li>
-<<<<<<< HEAD
-        <a href="{% url 'ads:ad_detail' ad.id %}">{{ ad.title }}</a> – ${{ ad.price }}<br>
-=======
       <a href="{% url 'ads:ad_detail' ad.id %}">{{ ad.title }}</a> – ${{ ad.price }}<br>
->>>>>>> ads4
         {{ ad.text }}
         {% if ad.picture %} {{ad.picture}} {% endif %}
         {% if ad.owner == user %}
