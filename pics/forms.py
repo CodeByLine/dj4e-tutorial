@@ -20,7 +20,7 @@ class PicCreateForm(forms.ModelForm):
         model = Pic
         fields = ['title', 'text', 'picture']  # Picture is manual
 
-    # Validate the size of the picture
+    # Validate the size of the picture #serverside protection
     def clean(self):
         cleaned_data = super().clean()
         pic = cleaned_data.get('picture')

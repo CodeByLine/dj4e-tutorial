@@ -2,25 +2,24 @@
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Ad
 
 
 class OwnerListView(ListView):
-    model = Ad
+  
     """
     Sub-class the ListView to pass the request to the form.
     """
 
 
 class OwnerDetailView(DetailView):
-    model = Ad
+
     """
     Sub-class the DetailView to pass the request to the form.
     """
 
 
 class OwnerCreateView(LoginRequiredMixin, CreateView):
-    model = Ad
+
     """
     Sub-class of the CreateView to automatically pass the Request to the Form
     and add the owner to the saved object.
@@ -36,7 +35,7 @@ class OwnerCreateView(LoginRequiredMixin, CreateView):
 
 
 class OwnerUpdateView(LoginRequiredMixin, UpdateView):
-    model = Ad
+
     """
     Sub-class the UpdateView to pass the request to the form and limit the
     queryset to the requesting user.
@@ -50,7 +49,7 @@ class OwnerUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class OwnerDeleteView(LoginRequiredMixin, DeleteView):
-    model = Ad
+
     """
     Sub-class the DeleteView to restrict a User from deleting other
     user's data.

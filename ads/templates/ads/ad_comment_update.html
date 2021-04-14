@@ -1,0 +1,16 @@
+
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+
+<h1>ad comment Update</h1>
+{% load crispy_forms_tags %}
+
+<form method="post" action="{% url 'ads:ad_detail' ad.id %}">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+<input type="submit" value="Submit">
+<input type="submit" value="All Ads" onclick="window.location.href='{% url 'ads:ad_detail' %}';return false;">
+</form>
+
+{% endblock %}

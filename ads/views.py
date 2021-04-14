@@ -3,11 +3,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View, generic
 from django.views.generic import ListView, TemplateView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from ads.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 from django.urls import reverse_lazy, reverse
 from .models import Ad, Comment
 from ads.forms import AdCreateForm, CommentForm
 from pics.models import Pic
+from pics.views import PicCreateView, PicDetailView, PicDeleteView
 # from .forms import AdForm
 from .forms import AdCreateForm
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -19,7 +20,7 @@ class AdListView(ListView):
     # success_url = reverse_lazy('ads:ad_list')
 
 class AdCreateView(LoginRequiredMixin, View):
-    template_name = 'ads/ad_create.html'
+    template_name = 'ads/ad_form.html'
     success_url = reverse_lazy('ads:all')
 
     def get(self, request, pk=None):
@@ -45,15 +46,16 @@ class AdCreateView(LoginRequiredMixin, View):
 #     fields = ['title', 'price', 'text']
     # success_url = reverse_lazy('ads:ad_list')
 
-class AdDetailView(DetailView):
+class AdDetailView(OwnerDetailView):
     model = Ad
-    fields = ['title', 'price', 'text']
+    fields = ['title', 'price', 'text', 'pic']
     # success_url = reverse_lazy('ads:ad_list')
     template_name = "ads/ad_detail.html"
 
     def get(self, request, pk) :
         x = Ad.objects.get(id=pk)
         comments = Comment.objects.filter(ad=x).order_by('-updated_at')
+        # (ad=x): 'ad': field in the model; 'x': variable in the view
         comment_form = CommentForm()
         context = { 'ad' : x, 'comments': comments, 'comment_form': comment_form }
         return render(request, self.template_name, context)
@@ -74,16 +76,31 @@ class AdDeleteView(DeleteView):
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment 
-    success_url = reverse_lazy('ads:all')
+    # success_url = reverse_lazy('ads:all')
     def post(self, request, pk) :
         f = get_object_or_404(Ad, id=pk)
         comment = Comment(text=request.POST['comment'], owner=request.user, ad=f)
         comment.save()
         return redirect(reverse('ads:ad_detail', args=[pk]))
-   
 
-class CommentDeleteView(DeleteView):
+
+class CommentUpdateView(OwnerUpdateView):
+    model = Comment
+    fields = ['text']
+    template_name = "ads/ad_comment_update.html"
+    # success_url = reverse_lazy('ads:all')
+    def get_success_url(self):
+        ad = self.object.ad
+
+    def post(self, request, pk) :
+        f = get_object_or_404(Ad, id=pk)
+        comment = Comment(text=request.POST['comment'], owner=request.user, ad=f)
+        comment.save()
+        return redirect(reverse('ads:ad_detail', args=[ad.id]))   
+
+class CommentDeleteView(OwnerDeleteView):
     model = Comment 
+    template_name = "ads/ad_comment_confirm_delete.html"
     success_url = reverse_lazy('ads:all')
  
     def get_success_url(self):
@@ -99,3 +116,31 @@ def stream_file(request, pk):
     response['Content-Length'] = len(ad.picture)
     response.write(ad.picture)
     return response
+
+# class PicListView(OwnerListView):
+#     model = Pic
+#     template_name = "pic/pic_list.html"
+
+# class PicDetailView(OwnerDetailView):
+#     model = Pic
+#     template_name = "pic/pic_detail.html"
+
+# class PicCreateView(OwnerCreateView):
+#     model = Pic
+#     template_name = "pic/pic_form.html"
+#     success_url = reverse_lazy('pics:all')
+
+#     def get(self, request, pk=None) :
+#         form = pics/PicCreateForm()
+#         ctx = { 'form' : form }
+#         return render(request, self.template, ctx)
+
+#     def post(self, request, pk=None) :
+#         form = pics/PicCreateForm(request.POST, request.FILES or none)
+
+#         if not form.is_valid() :
+#             ctx = { 'form' : form }
+#             return render(request, self.template, ctx)
+        
+#         pic = form.save(commit=False)
+#         pic.owner = self.request.user

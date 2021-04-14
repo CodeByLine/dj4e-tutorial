@@ -1,6 +1,5 @@
 from django import forms
 from ads.models import Ad
-
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from ads.humanize import naturalsize
 

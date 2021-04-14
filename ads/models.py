@@ -22,7 +22,7 @@ class Ad(models.Model) :
     def __str__(self):
         return self.title
 
-
+# class Comment(models.ModelForm) :
 class Comment(models.Model) :
     text = models.TextField(
         validators=[MinLengthValidator(3, "Comment must be greater than 3 characters")]
