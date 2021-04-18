@@ -18,6 +18,10 @@ APP_NAME = 'ChucksList'   # Add
 
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
+SOCIAL_AUTH_GITHUB_KEY = os.environ['SOCIAL_AUTH_GITHUB_KEY']
+SOCIAL_AUTH_GITHUB_SECRET = os.environ['SOCIAL_AUTH_GITHUB_SECRET']
+SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -39,6 +43,9 @@ INSTALLED_APPS = [
     'hello.apps.HelloConfig',
     'pics.apps.PicsConfig',
     'polls.apps.PollsConfig',
+    'oauth2_provider',
+    'social_django',
+    'rest_framework_social_oauth2',
 
 
     # Extensions - installed with pip3 / requirements.txt
@@ -102,18 +109,7 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'thedailyknicks$ads4chuck',
-#         'USER': 'thedailyknicks',
-#         'PASSWORD': 'colleen7sushi_DRAG',
-#         'HOST': 'thedailyknicks.mysql.pythonanywhere-services.com',
-#          'OPTIONS': {
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-#         },
-#     }
-# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
