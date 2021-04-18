@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
     'ads.apps.AdsConfig',
     'autos.apps.AutosConfig',
     'cats.apps.CatsConfig',
@@ -151,16 +152,41 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication', #new
-        'rest_framework_social_oauth2.authentication.SocialAuthentication', #new
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication', #new
+        # 'rest_framework_social_oauth2.authentication.SocialAuthentication', #new
     )
 }
+
 
 # Configure the social login
 try:
     from . import github_settings 
+    SOCIAL_AUTH_GITHUB_KEY = github_settings.SOCIAL_AUTH_GITHUB_KEY
+    SOCIAL_AUTH_GITHUB_SECRET = github_settings.SOCIAL_AUTH_GITHUB_SECRET
+    social_login = 'registration/login_social.html'
+    urlpatterns.insert(0,
+                       path('registration/login/', auth_views.LoginView.as_view(template_name=social_login))
+                       )
+    print('Using', social_login, 'as the login template')
 except:
-    print('When you want to use social login, please see mysite/github_settings-dist.py')
+    print('When you want to use social login, please see dj4e-samples/github_settings-dist.py')
+
+
+# Configure the social login
+# try:
+#     from . import github_settings
+#     social_login = 'registration/login_social.html'
+#     urlpatterns.insert(0,
+#                        path('accounts/login/', auth_views.LoginView.as_view(template_name=social_login))
+#                        )
+#     print('Using', social_login, 'as the login template')
+# except:
+#     print('Using registration/login.html as the login template')
+# Configure the social login
+# try:
+#     from . import github_settings 
+# except:
+#     print('When you want to use social login, please see mysite/github_settings-dist.py')
 
 # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#authentication-backends
 # https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html

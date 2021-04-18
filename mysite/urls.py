@@ -59,7 +59,8 @@ try:
     from . import github_settings
     social_login = 'registration/login_social.html'
     urlpatterns.insert(0,
-                       path('accounts/login/', auth_views.LoginView.as_view(template_name=social_login))
+                    #    path('accounts/login/', auth_views.LoginView.as_view(template_name=social_login))
+                       path('accounts/login/', auth_views.LoginView.as_view(template_name=social_login), name='authorize')
                        )
     print('Using', social_login, 'as the login template')
 except:
