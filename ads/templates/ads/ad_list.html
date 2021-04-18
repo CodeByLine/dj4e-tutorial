@@ -4,42 +4,15 @@
 
 {% block content %}
 <h1>Ads</h1>
+
 {% if ad_list %}
 <ul>
   {% for ad in ad_list %}
     <li>
-      <a href="{% url 'ads:ad_detail' ad.id %}">{{ ad.title }}</a> – ${{ ad.price }}<br>
+        <a href="{% url 'ads:ad_detail'  ad.id %}">{{ ad.title }}</a> – ${{ ad.price }}<br>
         {{ ad.text }}
         {% if ad.picture %} Click to see picture {% endif %}
-        {% if ad.owner == user %}
-          (<a href="{% url 'ads:ad_update' ad.id %}">Update</a> |
-         <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>)
 
-        {% else %}
-  <a href="{% url 'login' %}?next={% url 'ads:all' %}">Login to make changes</a>
-  {% endif %}    
-{% endfor %} <br/>
-    </li>
-</ul>
-{% else %}
-  <p>There are no ads in the library.</p>
-{% endif %}
-<p>
-  {% if ad_count > 0 %}
-    <a href="{% url 'ads:ad_create' %}">Create Ad</a>
-  {% else %}
-    Add an ad to see it here.
-  {% endif %}
-</p>
-<p>
-<a href="{% url 'ads:all' %}">View ads</a> | <a href="{% url 'ads:ad_create' %}">Create Ad</a>
-</p>
-
-{% if ad_list %}
-<ul>
-  {% for ad in ad_list %}
-    <li>
-        <a href="{% url 'ads:ad_detail'  ad.id %}">{{ ad.title }}</a>
         {% if ad.owner_id == user.id %}
         (<a href="{% url 'ads:ad_update' ad.id %}">Edit</a> |
         <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>)
@@ -50,20 +23,20 @@
             "favPost('{% url 'ads:ad_unfavorite' ad.id %}', {{ ad.id }} );return false;"
             {% if ad.id not in favorites %} style="display: none;" {% endif %}
             id="favorite_star_{{ad.id}}">
-        <span class="fa-stack" style="vertical-align: middle;">
-        <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
-        <i class="fa fa-star-o fa-stack-1x"></i>
-        </span>
+            <span class="fa-stack" style="vertical-align: middle;">
+            <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
+            <i class="fa fa-star-o fa-stack-1x"></i>
+            </span>
         </a>
         <!-- the second href -->
         <a href="#" onclick=
              "favPost('{% url 'ads:ad_favorite' ad.id %}', {{ ad.id }} );return false;"
             {% if ad.id in favorites %} style="display: none;" {% endif %}
             id="unfavorite_star_{{ad.id}}">
-        <span class="fa-stack" style="vertical-align: middle;">
-        <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;"></i>
-        <i class="fa fa-star-o fa-stack-1x"></i>
-        </span>
+            <span class="fa-stack" style="vertical-align: middle;">
+            <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;"></i>
+            <i class="fa fa-star-o fa-stack-1x"></i>
+            </span>
         </a>
         {% endif %}
     </li>
@@ -91,7 +64,7 @@
   <script>
   function favPost(url, ad) {
       console.log('Requesting JSON');
-      $.post(url, {},  function(rowz){
+      $.post(url, {},  function(rows){
           console.log(url, 'finished');
           $("#unfavorite_star_"+ad_id).toggle();
           $("#favorite_star_"+ad_id).toggle();

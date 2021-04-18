@@ -31,6 +31,7 @@ class AdListView(ListView):
         ctx = {'ad_list' : ad_list, 'favorites': favorites}
         return render(request, self.template_name, ctx)
 
+
 class AdCreateView(LoginRequiredMixin, View):
     template_name = 'ads/ad_form.html'
     success_url = reverse_lazy('ads:all')
@@ -152,9 +153,9 @@ class AddFavoriteView(LoginRequiredMixin, View):
 class DeleteFavoriteView(LoginRequiredMixin, View):
     def post(self, request, pk) :
         print("Delete PK",pk)
-        t = get_object_or_404(Thing, id=pk)
+        t = get_object_or_404(Ad, id=pk)
         try:
-            fav = Fav.objects.get(user=request.user, thing=t).delete()
+            fav = Fav.objects.get(user=request.user, ad=t).delete()
         except Fav.DoesNotExist as e:
             pass
 
