@@ -18,9 +18,6 @@ APP_NAME = 'ChucksList'   # Add
 
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
-SOCIAL_AUTH_GITHUB_KEY = os.environ['SOCIAL_AUTH_GITHUB_KEY']
-SOCIAL_AUTH_GITHUB_SECRET = os.environ['SOCIAL_AUTH_GITHUB_SECRET']
-SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -155,14 +152,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication', #new
+        'rest_framework_social_oauth2.authentication.SocialAuthentication', #new
     )
 }
 
 # Configure the social login
 try:
     from . import github_settings 
-    SOCIAL_AUTH_GITHUB_KEY = github_settings.SOCIAL_AUTH_GITHUB_KEY
-    SOCIAL_AUTH_GITHUB_SECRET = github_settings.SOCIAL_AUTH_GITHUB_SECRET
 except:
     print('When you want to use social login, please see mysite/github_settings-dist.py')
 
@@ -170,6 +167,7 @@ except:
 # https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
+    'rest_framework_social_oauth2.backends.DjangoOAuth2', #new
     # 'social_core.backends.twitter.TwitterOAuth',
     # 'social_core.backends.facebook.FacebookOAuth2',
 
