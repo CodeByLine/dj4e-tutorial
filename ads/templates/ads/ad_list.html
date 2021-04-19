@@ -9,7 +9,7 @@
 <ul>
   {% for ad in ad_list %}
     <li>
-        <a href="{% url 'ads:ad_detail'  ad.id %}">{{ ad.title }}</a> – ${{ ad.price }}<br>
+        <a href="{% url 'ads:ad_detail' ad.id %}">{{ ad.title }}</a> – ${{ ad.price }}<br>
         {{ ad.text }}
         {% if ad.picture %} Click to see picture {% endif %}
 
@@ -17,6 +17,7 @@
         (<a href="{% url 'ads:ad_update' ad.id %}">Edit</a> |
         <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>)
         {% endif %}
+        
         {% if user.is_authenticated %}
         <!-- Two hrefs with two stacked icons each - one showing and one hidden -->
         <a href="#" onclick=
@@ -30,16 +31,14 @@
         </a>
         <!-- the second href -->
         <a href="#" onclick=
-             "favPost('{% url 'ads:ad_favorite' ad.id %}', {{ ad.id }} );return false;"
-             
+            "favPost('{% url 'ads:ad_favorite' ad.id %}', {{ ad.id }} );return false;"
             {% if ad.id in favorites %} style="display: none;" {% endif %}
             id="unfavorite_star_{{ad.id}}">
             <span class="fa-stack" style="vertical-align: middle;">
             <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;"></i>
             <i class="fa fa-star-o fa-stack-1x"></i>
             </span>
-        </a>
-        
+        </a>    
         {% endif %}
     </li>
   {% endfor %}
