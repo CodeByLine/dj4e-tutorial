@@ -31,6 +31,7 @@
         <!-- the second href -->
         <a href="#" onclick=
              "favPost('{% url 'ads:ad_favorite' ad.id %}', {{ ad.id }} );return false;"
+             
             {% if ad.id in favorites %} style="display: none;" {% endif %}
             id="unfavorite_star_{{ad.id}}">
             <span class="fa-stack" style="vertical-align: middle;">
@@ -38,6 +39,7 @@
             <i class="fa fa-star-o fa-stack-1x"></i>
             </span>
         </a>
+        
         {% endif %}
     </li>
   {% endfor %}
@@ -62,9 +64,9 @@
 
 
   <script>
-  function favPost(url, ad) {
+  function favPost(url, ad_id) {
       console.log('Requesting JSON');
-      $.post(url, {},  function(rows){
+      $.post(url, {},  function(rowz){
           console.log(url, 'finished');
           $("#unfavorite_star_"+ad_id).toggle();
           $("#favorite_star_"+ad_id).toggle();

@@ -10,11 +10,11 @@ from ads.forms import AdCreateForm, CommentForm
 from pics.models import Pic
 from pics.views import PicCreateView, PicDetailView, PicDeleteView
 # from .forms import AdForm
-from .forms import AdCreateForm
+# from .forms import AdCreateForm
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
-class AdListView(ListView):
+class AdListView(OwnerListView):
     model = Ad
     # fields = ['title', 'price', 'text']
     # success_url = reverse_lazy('ads:ad_list')
