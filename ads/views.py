@@ -12,7 +12,7 @@ from pics.views import PicCreateView, PicDetailView, PicDeleteView
 # from .forms import AdForm
 # from .forms import AdCreateForm
 from django.core.files.uploadedfile import InMemoryUploadedFile
-
+from django.http import HttpResponse, HttpResponseRedirect
 
 class AdListView(OwnerListView):
     model = Ad
