@@ -5,6 +5,7 @@ from django.contrib.auth import views as auth_views
 app_name = 'ads'
 urlpatterns = [
     path('', views.AdListView.as_view(), name='all'),
+    path('ad/', views.AdListView.as_view(), name='ad'),
     path('ad_list/', views.AdListView.as_view(), name='ad_list'),
     path('<int:pk>', views.AdDetailView.as_view(), name='ad_detail'),
     path('ad/create/',
