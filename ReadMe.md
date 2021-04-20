@@ -73,3 +73,6 @@ You can edit these files and settings in the Web tab to switch between
 your various projects on PythonAnywhere.  Make sure to reload under the Web tab after
 every file or configuration change.
 
+
+My certificate: https://coursera.org/share/e38db9f6dd621d30e3d645815bf7e47e
+
