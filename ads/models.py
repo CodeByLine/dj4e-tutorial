@@ -34,6 +34,7 @@ class Comment(models.Model) :
 
     ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='ad_owner')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

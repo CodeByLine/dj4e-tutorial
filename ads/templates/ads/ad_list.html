@@ -34,6 +34,7 @@
             "favPost('{% url 'ads:ad_favorite' ad.id %}', {{ ad.id }} );return false;"
             {% if ad.id in favorites %} style="display: none;" {% endif %}
             id="unfavorite_star_{{ad.id}}">
+            <!-- see vid for code walkthrough -->
             <span class="fa-stack" style="vertical-align: middle;">
             <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;"></i>
             <i class="fa fa-star-o fa-stack-1x"></i>
