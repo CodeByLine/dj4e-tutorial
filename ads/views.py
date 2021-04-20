@@ -16,7 +16,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.humanize.templatetags.humanize import naturaltime
 
 from django.db import connection
-from ads.utils import dump_queries
+from ads.utils import dump_queries 
 from django.db.models import Q
 
 class AdListView(OwnerListView):
