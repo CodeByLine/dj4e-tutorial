@@ -35,12 +35,12 @@ class AdListView(OwnerListView):
             # __icontains for case-insensitive search
             query = Q(title__icontains=strval) 
             query.add(Q(text__icontains=strval), Q.OR)
-            ad_listings = Ad.objects.filter(query).select_related().order_by('-updated_at')[:10]
+            objects = Ad.objects.filter(query).select_related().order_by('-updated_at')[:10]
         else :
-            ad_listings = Ad.objects.all().order_by('-updated_at')[:10]
+            objects = Ad.objects.all().order_by('-updated_at')[:10]
 
         # Augment the post_list
-        for obj in ad_listings:
+        for obj in objects:
             obj.natural_updated = naturaltime(obj.updated_at)
 
 
@@ -52,7 +52,7 @@ class AdListView(OwnerListView):
             rows = request.user.favorite_ads.values('id')
             # favorites = [2, 4, ...] using list comprehension
             favorites = [ row['id'] for row in rows ]
-        ctx = {'ad_list' : ad_listings, 'search': strval,  'favorites': favorites}
+        ctx = {'ad_list' : objects, 'search': strval,  'favorites': favorites}
         return render(request, self.template_name, ctx)
 
         dump_queries()
